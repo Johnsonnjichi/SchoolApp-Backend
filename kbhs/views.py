@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from django.shortcuts import get_object_or_404
 from . serializers import *
 from . models import *
 
@@ -33,6 +34,16 @@ def Update_Contact(request, id):
         serializer.save()
         return Response('message:Updated successfully', status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['DELETE'])
+def Delete_Contact(request, id):
+    contact = get_object_or_404(ContactUs, id=id)
+    # contact = ContactUs.objects.get(id=id)
+    contact.delete()
+    return Response('message:Deleted successfully', status=status.HTTP_200_OK)
+    
+
+
 
 
 
