@@ -12,6 +12,8 @@ def Home(request):
     print('johnson')
     return Response({'Hello World!'})
 
+# ContactUs CRUD operations.
+
 @api_view(['GET'])
 def Contact_us(request):
     contact = ContactUs.objects.all()
@@ -41,7 +43,14 @@ def Delete_Contact(request, id):
     contact.delete()
     return Response('message:Deleted successfully', status=status.HTTP_200_OK)
 
-# Admissions Page CRUD
+# Admissions Page CRUD operations.
+
+@api_view(['GET'])
+def Get_AdmissionForm(request):
+    admissions = AdmissionForm.objects.all()
+    serializers = AdmissionFormSerializer(admissions, many=True)
+    return Response(serializers.data)
+
 
     
 

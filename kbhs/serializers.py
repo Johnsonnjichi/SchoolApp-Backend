@@ -7,3 +7,9 @@ class ContactUsSerializer(serializers.ModelSerializer):
         model = ContactUs
         fields = '__all__' 
 
+class AdmissionFormSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AdmissionForm
+        fields = '__all__'
+
+ 
