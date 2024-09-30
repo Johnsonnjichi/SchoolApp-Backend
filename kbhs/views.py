@@ -59,7 +59,17 @@ def Create_AdmissionForm(request):
         return Response('message:Created successfully', status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['PATCH'])
+def Update_AdmissionForm(request, id):
+    admission = AdmissionForm.objects.get(id=id)
+    serializer = AdmissionFormSerializer(admission, data=request.data, partial=True)
+    if serializer.is_valid():
+        serializer.save()
+        return Response('message:Updated successfully', status=status.HTTP_200_OK)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+    
 
 
 
